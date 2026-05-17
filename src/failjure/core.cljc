@@ -13,6 +13,7 @@
 
 
 (defprotocol HasFailed
+  :extend-via-metadata true
   (failed? [self])
   (message [self]))
 
