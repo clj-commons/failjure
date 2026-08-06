@@ -16,7 +16,7 @@
 (def lib 'failjure/failjure)
 (defn- the-version [patch] (format "2.3.%s" patch))
 (def version (the-version (b/git-count-revs nil)))
-(def snapshot (the-version "9-SNAPSHOT"))
+(def snapshot (the-version "99-SNAPSHOT"))
 (def class-dir "target/classes")
 
 (defn- pom-template [version]
