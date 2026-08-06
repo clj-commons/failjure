@@ -1,8 +1,4 @@
-# Failjure
-
-![Run Tests](https://github.com/adambard/failjure/workflows/Run%20Tests/badge.svg)
-[![Clojars Project](https://img.shields.io/clojars/v/failjure.svg)](https://clojars.org/failjure)
-[![bb compatible](https://raw.githubusercontent.com/babashka/babashka/master/logo/badge.svg)](https://babashka.org)
+# Failjure [![Clojure CI Release](https://github.com/clj-commons/failjure/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/clj-commons/failjure/actions/workflows/test-and-release.yml) [![Clojure CI Develop](https://github.com/clj-commons/failjure/actions/workflows/test-and-snapshot.yml/badge.svg)](https://github.com/clj-commons/failjure/actions/workflows/test-and-snapshot.yml) [![Clojure CI Pull Request](https://github.com/clj-commons/failjure/actions/workflows/test.yml/badge.svg)](https://github.com/clj-commons/failjure/actions/workflows/test.yml)
 
 Failjure is a utility library for working with failed computations in Clojure(Script).
 It provides an alternative to exception-based error handling for applications
@@ -13,14 +9,30 @@ implementation.
 
 ## Installation
 
+[![Clojars](https://img.shields.io/badge/clojars-failjure/failjure_2.3.0-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABjFBMVEUAAAAdCh0qDikdChwAAAAnDSY0EjM2FjUnDiYnDSYnDSYpDigyEDEEAQRGNUb///////8mDSYAAAAAAAAAAAAFAgUqEyoAAAAAAAAAAAAFAgUAAABXU1c2FjVMx+dQx+f///////9Nx+b////4/f6y4vRPt+RQtOT///9Qt+P///8oDSey4vRQr9/////3/P5hzelNx+dNx+dNx+f///8AAAAuDy0zETIAAAAoDScAAAAAAAARBREAAAAvDy40ETMwEC9gSF+Ne42ilKKuoK6Rg5B5ZXlaP1o4Gzf///9nTWZ4YncyEDF/bn/8/Pz9/P339/c1FTUlDCRRM1AbCRtlS2QyEDEuDy1gRWAxEDAzETIwEC/g4OAvDy40EjOaiZorDiq9sbzNyM3UzdQyEDE0ETMzETKflZ/UzdQ5Fzmu4fNYyuhNx+dPt+RLu9xQyOhBbo81GTuW2vCo4PJNx+c4MFE5N1lHiLFEhKQyEDGDboMzETI5Fjh5bXje2d57aHrIw8jc2NyWhJUrDioxe9o4AAAAPnRSTlMAkf+IAQj9+e7n6e31RtqAD/QAAAED+A0ZEQ8DwvkLBsmcR4aG8+cdAD6C8/MC94eP+qoTrgH+/wj1HA8eEvpXOCUAAAABYktHRA8YugDZAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wcHFjou4Z/shwAAAUpJREFUOMul0/VTwzAUB/AAwyW4y3B3h8EDNuTh7u6UDHcd8I+TbHSjWdrjju/1h77kc+3Lu5aQvyakF/r6B5wu1+DQMEBomLRtG0EpozYDCEccA4iIjIqOiY0bB5iYxHgZ4FQCpYneKmmal0aQPMOXZnUAvJhLkbpInf8NFtKCTrGImK6DJcTlDGl/BXGV6oCsrSNIYAM3aQDwl2xJYBtBB5lZAuyYgWzY3YMcNcjN2wc4EGMEFTg8+hlyfgEenygAj71Q9FBExH0wKC4p1bRTJlJWXqEAVNM05ovbXfkPAHBmAUQPAGaAsXMBLiwA8z3h0gRcsWsObuAWLJu8Awb3ZoB5T8EvS/CgBo9Y5Z8TPwXBJwlUI9Ia/yRrEZ8lID71Olrf0MiamkkL4kurDEjba+C/e2sninR0wrsH8eMTvrqIWbodjh7jyjdtCY3Aniz4jwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNS0wNy0wN1QyMjo1ODo0NiswMjowMCgWtSoAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTUtMDctMDdUMjI6NTg6NDYrMDI6MDBZSw2WAAAAAElFTkSuQmCC)](https://clojars.org/failjure/failjure)
+[![cljdoc](https://cljdoc.org/badge/failjure/failjure?2.3.0)](https://cljdoc.org/d/failjure/failjure/CURRENT)
+
 Add the following to your build dependencies:
 
-[![Clojars Project](https://img.shields.io/clojars/v/failjure.svg)](https://clojars.org/failjure)
+`deps.edn`:
+```clojure
+    failjure/failjure {:mvn/version "2.3.0"}
+```
+
+Leiningen:
+```clojure
+    [failjure/failjure "2.3.0"]
+```
 
 You can also include the specs via the [failjure-spec](https://github.com/adambard/failjure-spec) project,
 if you're into that sort of thing:
 
 [![Clojars Project](https://img.shields.io/clojars/v/failjure-spec.svg)](https://clojars.org/failjure-spec)
+
+Failjure works on Clojure 1.10 and above, ClojureScript 1.11 and above,
+and Babashka (tested against v1.13.* but should work on v1.12.*).
+
+> Note: the tests pass for Clojure 1.8 and 1.9 but those are not officially supported here.
 
 ## Example
 
@@ -232,74 +244,8 @@ The usage looks like this:
 The pre-packaged helpers `assert-some?`, `assert-nil?`, `assert-not-nil?`, `assert-not-empty?`, and `assert-number?`
 are provided, but if you like, adding your own is as easy as `(def assert-my-pred? (partial f/assert-with my-pred?))`.
 
-
-## Changelog
-
-#### 2.3.0
-
-Added clj-kondo support and indent annotations.
-
-#### 2.2.0
-
-(Re-)added AOT compilation to the new leiningen project. This may help resolve errors with some project configurations.
-
-#### 2.1.1
-
-Fix a deployment whoopsie causing `attempt` to have reversed argument order from what is documented
-here. It was fine in my REPL, I swear!
-
-#### 2.1.0
-
-**USE 2.1.1 INSTEAD**
-
-Added `attempt` and `as-ok->`. Changed from boot to leiningen for builds.
-
-#### 2.0.0
-
-Added ClojureScript support. Since the jar now includes .cljc instead of .clj files, which could
-break older builds, I've decided this should be a major version. It should in general be totally
-backwards-compatible though.
-
-Notable changes:
-
-* ClojureScript support (thanks @snorremd)
-* `*try` now wraps its inputs in a function and returns `(try-fn *wrapped-fn*)`. This was necessary
-  to keep the clj and cljs APIs consistent, but could break some existing use cases (probably).
-
-#### 1.5.0
-
-Added `try-all` feature
-
-#### 1.4.0
-
-Resolved issues caused by attempting to destructure failed results.
-
-#### 1.3.0
-
-Fix bug where `ok->/>` would sometimes double-eval initial argument.
-
-#### 1.2.0
-
-Refactored `attempt-all`, `attempt->`, and `attempt->>` to remove dependency on monads
-
-#### 1.1.0
-
-Added assert helpers
-
-#### 1.0.1
-
-This version is fully backwards-compatible with 0.1.4, but failjure
- has been in use long enough to be considered stable. Also I added
-a .1 because nobody trusts v1.0.0.
-
-* Added `ok?`, `ok->`, `ok->>`, `if-let-ok?`, `when-let-ok?`, `if-let-failed?` and `when-let-failed?`
-
-#### 0.1.4
-
-* Added changelog.
-
 ## License
 
-Copyright 2016 [Adam Bard](https://adambard.com/) and [Andrew Brehaut](https://brehaut.net/)
+Copyright (c) 2016-2026 [Adam Bard](https://adambard.com/) and [Andrew Brehaut](https://brehaut.net/)
 
 Distributed under the Eclipse Public License v1.0 (same as Clojure).

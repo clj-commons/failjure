@@ -1,0 +1,38 @@
+name: Release Version
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Setup Clojure and Babashka
+        uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d
+        with:
+          cli: '1.12.5.1664'
+          bb: latest
+      - name: Cache All The Things
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.clojure
+            ~/.cpcache
+            ~/.deps.clj
+          key: ${{ runner.os }}-${{ hashFiles('**/deps.edn', '**/bb.edn') }}
+      - name: Run Tests, Build JAR, and Deploy
+        run: bb ci:deploy
+        env:
+          CLOJARS_PASSWORD: ${{secrets.DEPLOY_TOKEN}}
+          CLOJARS_USERNAME: ${{secrets.DEPLOY_USERNAME}}

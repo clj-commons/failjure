@@ -1,4 +1,4 @@
-(ns failjure.test-core
+(ns failjure.core-test
   (:require #?@(:clj [[clojure.test :refer :all]
                       [failjure.core :as f]]
                 :cljs [[cljs.test :refer-macros [deftest testing is]]
