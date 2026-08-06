@@ -1,9 +1,9 @@
-name: Develop & Snapshot
+name: Master & Snapshot
 
 on:
   push:
     branches:
-      - "develop"
+      - "master"
 
 jobs:
   build-and-snapshot:
