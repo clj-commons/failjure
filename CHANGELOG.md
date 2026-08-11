@@ -1,11 +1,15 @@
 ## Changelog
 
-#### 2.3.next in progress
+#### 2.3.62 2026-08-11
 
+**This release is functionally identical to 2.3.0 but is the first release since the project migrated to clj-commons.**
+
+* Switched to MAJOR.MINOR.COMMITS versioning scheme.
 * Added GitHub Actions workflow for CI and deployment.
 * Added `bb.edn` to drive tests & builds. This includes multi-version testing against Clojure 1.10 through 1.13 (alpha).
 * Switched from Leiningen to `deps.edn` (so Failjure can be used via git deps).
 * Split CHANGELOG out from README.
+* Added ORIGINATOR and CODEOWNERS per clj-commons conventions.
 
 #### 2.3.0
 
