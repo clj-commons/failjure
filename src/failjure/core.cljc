@@ -93,15 +93,23 @@
   Note that the above is identical in function to simply calling
   (fail \"Goodbye\")"
   {:style/indent 1}
-  ([[v-sym form] ok-branch]
-   `(let [result# ~form]
-      (if-let-ok? [~v-sym result#] ~ok-branch result#)))
-  ([[v-sym form] ok-branch failed-branch]
-   `(let [result# ~form
-          ~v-sym result#]
-      (if (ok? result#)
-        ~ok-branch
-        ~failed-branch))))
+  ([[binding form] ok-branch]
+   (let [result (gensym "result__")]
+     `(let [~result ~form]
+        (if (ok? ~result)
+          (let [~binding ~result]
+            ~ok-branch)
+          ~result))))
+  ([[binding form] ok-branch failed-branch]
+   (let [result (gensym "result__")]
+     `(let [~result ~form]
+        (if (ok? ~result)
+          (let [~binding ~result]
+            ~ok-branch)
+          ~(if (symbol? binding)
+             `(let [~binding ~result]
+                ~failed-branch)
+             failed-branch))))))
 
 
 (defmacro when-let-ok?

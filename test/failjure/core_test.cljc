@@ -79,7 +79,13 @@
       (is (= (f/fail "Fail")
              (f/attempt-all [x "1"
                            {:keys [y]} (f/fail "Fail")]
-                          y))))
+                          y)))
+      (is (= (f/fail "Fail")
+             (f/attempt-all [[x y] (f/fail "Fail")]
+                            [x y])))
+      (is (= [1 2]
+             (f/attempt-all [[x y] [1 2]]
+                            [x y]))))
 
     (testing "try-all safely catches an exception in the bindings"
       (is (f/failed? (f/try-all [x #?(:clj (/ 4 0) :cljs (throw (js/Error. "Error")))
