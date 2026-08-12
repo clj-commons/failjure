@@ -181,6 +181,14 @@
 
     (testing "if-let-ok?"
 
+      (testing "destructuring short-circuits failures"
+        (is (= (f/fail "Fail")
+               (f/if-let-ok? [[x y] (f/fail "Fail")]
+                 [x y])))
+        (is (= [1 2]
+               (f/if-let-ok? [[x y] [1 2]]
+                 [x y]))))
+
       (is (= "Hello"
              (f/if-let-ok? [v "Hello"] v)))
 

@@ -94,12 +94,8 @@
   (fail \"Goodbye\")"
   {:style/indent 1}
   ([[binding form] ok-branch]
-   (let [result (gensym "result__")]
-     `(let [~result ~form]
-        (if (ok? ~result)
-          (let [~binding ~result]
-            ~ok-branch)
-          ~result))))
+   `(let [result# ~form]
+      (if-let-ok? [~binding result#] ~ok-branch result#)))
   ([[binding form] ok-branch failed-branch]
    (let [result (gensym "result__")]
      `(let [~result ~form]
