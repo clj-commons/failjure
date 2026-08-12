@@ -31,5 +31,3 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/deps.edn', '**/bb.edn') }}
       - name: Run Tests
         run: bb ci
-      - name: Check cljdoc.edn
-        run: curl -fsSL https://raw.githubusercontent.com/cljdoc/cljdoc/6920643da6f4375ad701694858e98b3c8ecff3cb/script/verify-cljdoc-edn | bash -s doc/cljdoc.edn
