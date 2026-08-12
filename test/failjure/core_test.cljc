@@ -79,7 +79,13 @@
       (is (= (f/fail "Fail")
              (f/attempt-all [x "1"
                            {:keys [y]} (f/fail "Fail")]
-                          y))))
+                          y)))
+      (is (= (f/fail "Fail")
+             (f/attempt-all [[x y] (f/fail "Fail")]
+                            [x y])))
+      (is (= [1 2]
+             (f/attempt-all [[x y] [1 2]]
+                            [x y]))))
 
     (testing "try-all safely catches an exception in the bindings"
       (is (f/failed? (f/try-all [x #?(:clj (/ 4 0) :cljs (throw (js/Error. "Error")))
@@ -174,6 +180,14 @@
         (is (= "You failed." (f/message (f/fail "You failed."))))))
 
     (testing "if-let-ok?"
+
+      (testing "destructuring short-circuits failures"
+        (is (= (f/fail "Fail")
+               (f/if-let-ok? [[x y] (f/fail "Fail")]
+                 [x y])))
+        (is (= [1 2]
+               (f/if-let-ok? [[x y] [1 2]]
+                 [x y]))))
 
       (is (= "Hello"
              (f/if-let-ok? [v "Hello"] v)))
