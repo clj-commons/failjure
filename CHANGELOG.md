@@ -1,6 +1,6 @@
 ## Changelog
 
-#### 2.3.next in progress
+#### 2.3.70 2026-09-22
 
 * Address [#31](https://github.com/clj-commons/failjure/issues/31) via PR [#42](https://github.com/clj-commons/failjure/pull/42) from [@gzmask](https://github.com/gzmask).
 
